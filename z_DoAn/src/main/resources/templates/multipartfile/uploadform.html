@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload Excel File to MySQL</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	<link rel="stylesheet" type="text/css" th:href="@{css/MatchTitle.css}" href="../../static/css/MatchTitle.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+	<script th:href="@{js/MatchTitle.js}" src="../../static/js/MatchTitle.js"></script>
+</head>
+ 
+<body>
+	<div class="container h-100">
+	<div class="h-100">
+		<div class="row h-100 justify-content-center align-items-center">
+			<div class="col-sm-5">
+				<h3>Upload Excel File to Database</h3>
+				<form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+					<div class="form-group">
+						<label class="control-label" for="uploadfile">Upload File:</label>
+						<input type="file" class="form-control" id="uploadfile" placeholder="Upload File"  name="uploadfile"></input>
+					</div>
+					<button type="submit" class="btn btn-default" id="btnSubmit">Upload </button>
+				</form>
+				
+				<div th:if="${message}">
+					<span th:text="${message}"/>
+					<!-- <a href="/file">Download Excel File from MySQL</a> -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+	</div>  
+
+<form method="POST" enctype="multipart/form-data" action="/GiaoDien">
+	<div class="tab">
+		
+		Số thứ tự: <input   onclick="setTitle(this)" id="stt" name = "stt" >
+
+		Tên: <input  onclick="setTitle(this)" id="ten"  name = "ten" >
+		
+		Model: <input  onclick="setTitle(this)" id="model" name = "model">
+		
+		Serial: <input  onclick="setTitle(this)" id="serial"  name="serial">
+		
+		Hãng sản xuất: <input  onclick="setTitle(this)" id="hangsanxuat"  name = "hangsx">
+		
+		Nước sản xuất: <input  onclick="setTitle(this)" id="nuocsanxuat"  name = "nuocsx">
+		
+		Năm sản xuất: <input  onclick="setTitle(this)" id="namsanxuat"  name="namsx">
+		
+		Đơn vị: <input  onclick="setTitle(this)" id="donvi"  name="donvi">
+		
+		Số lượng: <input  onclick="setTitle(this)" id="soluong"  name="soluong">
+		
+		Đơn giá VND: <input  onclick="setTitle(this)" id="dongiavnd"  name="dongiavnd">
+		
+		Đơn giá USD: <input  onclick="setTitle(this)" id="dongiausd"  name="dongiausd">
+		
+		Thành tiền: <input  onclick="setTitle(this)" id="thanhtien"  name="thanhtien">
+		
+		Khoa sử dụng: <input  onclick="setTitle(this)" id="khoasudung"  name="khoa">
+		
+		Ngày bàn giao: <input  onclick="setTitle(this)" id="ngaybangiao"  name="ngaybangiao">
+		
+		Giấy tờ: <input  onclick="setTitle(this)" id="giayto"  name="giayto">
+		
+		Nguồn: <input  onclick="setTitle(this)" id="nguon"  name="nguon">
+		
+		Ghi chú: <input  onclick="setTitle(this)" id="ghichu" name="ghichu">
+	</div>
+	<input type="submit">
+</form>
+	<div id="London" class="tabcontent">
+		<table>
+			<tr th:each="tieuDe, iterStat : ${tieuDe}">     
+        	<td th:if="${tieuDe}"><input onclick="getTitle(this)" th:value="${tieuDe}" type="button"></input></td>
+		</table>
+		<!-- <input  onclick="a1(this)" value="dung" type = "button"></input>
+		<input  onclick="a1(this)" value="21" type = "button"></input>
+ 		<input  onclick="a1(this)" value="Ha Nam" type = "button"></input> -->
+	</div>
+
+	
+</body>
+<script>
+	s =""
+function getTitle(elm) {
+  s = elm.getAttribute('value');
+}
+function setTitle(elm) {
+  elm.defaultValue=s;
+}
+</script>
+</html>
